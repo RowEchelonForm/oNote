@@ -39,14 +39,13 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
-    'nuxt-tslint',
+    'nuxt-tslint'
   ],
 
   styleResources: {
     scss: [
-      './assets/scss/main.scss',
-      './assets/scss/_app.scss',
-      ]
+      './assets/scss/*.scss'
+    ]
   },
 
   /*
@@ -54,6 +53,6 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-  },
+  }
 
 }

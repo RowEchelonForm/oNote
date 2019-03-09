@@ -1,4 +1,6 @@
 module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
     '^~/(.*)$': '<rootDir>/$1',
@@ -14,4 +16,4 @@ module.exports = {
     '<rootDir>/components/**/*.vue',
     '<rootDir>/pages/**/*.vue'
   ]
-}
+};

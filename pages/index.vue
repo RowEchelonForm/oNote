@@ -21,17 +21,19 @@
         >GitHub</a>
       </div>
 
-      <button class="test-class">TEST</button>
+      <Button class="test-class">TEST</Button>
     </div>
   </section>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
+import Button from '~/components/Button.vue'
 
 export default {
   components: {
-    Logo
+    Logo,
+    Button
   }
 }
 </script>
@@ -66,9 +68,5 @@ export default {
 
 .links {
   padding-top: 15px;
-}
-.test-class {
-  @include testmix;
-  color: #333;
 }
 </style>
