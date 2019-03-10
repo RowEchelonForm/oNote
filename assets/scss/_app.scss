@@ -1,8 +1,98 @@
 
-@mixin testmix() {
-  box-shadow: 0 0 3px 2px blue;
+
+$_color-primary: rgb(88, 188, 235);
+$_color-primary-lighter: rgb(121, 201, 239);
+$_color-primary-darker: rgb(79, 169, 211);
+$_color-primary-darkest: rgb(70,150,188);
+$_color-primary-shade: rgba(88, 188, 235, 0.25);
+$_color-secondary: rgb(188, 235, 88);
+$_color-secondary-lighter: rgb(201, 239, 121);
+$_color-secondary-darker: rgb(169, 211,79);
+$_color-secondary-darkest: rgb(150, 188, 70);
+$_color-secondary-shade: rgba(188, 235, 88, 0.25);
+$_color-warning: rgb(235, 135, 88);
+$_color-error: rgb(235, 93, 88);
+
+$themes: (
+  light: (
+    primary: $_color-primary,
+    primaryLighter: $_color-primary-lighter,
+    primaryDarker: $_color-primary-darker,
+    primaryDarkest: $_color-primary-darkest,
+    secondary: $_color-secondary,
+    secondaryLighter: $_color-secondary-lighter,
+    secondaryDarker: $_color-secondary-darker,
+    secondaryDarkest: $_color-secondary-darkest,
+    background: rgb(250, 250, 250),
+    backgroundSecondary: rgb(200, 200, 200),
+    text: rgb(250, 250, 250),
+    textSecondary: rgb(0, 0, 0),
+    shade: rgb(220, 220, 220),
+    shadeDarker: rgb(200, 200, 200),
+    shadeColoredPrimary: $_color-primary-shade,
+    shadeColoredSecondary: $_color-primary-shade,
+    warning: $_color-warning,
+    error: $_color-error
+  ),
+  dark: (
+    primary: $_color-primary,
+    primaryLighter: $_color-primary-lighter,
+    primaryDarker: $_color-primary-darker,
+    primaryDarkest: $_color-primary-darkest,
+    secondary: $_color-secondary,
+    secondaryLighter: $_color-secondary-lighter,
+    secondaryDarker: $_color-secondary-darker,
+    secondaryDarkest: $_color-secondary-darkest,
+    background: rgb(22, 22, 22),
+    backgroundSecondary: rgb(60, 60, 60),
+    text: rgb(110, 110, 110),
+    textSecondary: rgb(0, 0, 0),
+    shade: rgb(25, 25, 25),
+    shadeDarker: rgb(55, 55, 55),
+    shadeColoredPrimary: $_color-primary-shade,
+    shadeColoredSecondary: $_color-primary-shade,
+    warning: $_color-warning,
+    error: $_color-error
+  ),
+  black: (
+    primary: $_color-primary,
+    primaryLighter: $_color-primary-lighter,
+    primaryDarker: $_color-primary-darker,
+    primaryDarkest: $_color-primary-darkest,
+    secondary: $_color-secondary,
+    secondaryLighter: $_color-secondary-lighter,
+    secondaryDarker: $_color-secondary-darker,
+    secondaryDarkest: $_color-secondary-darkest,
+    background: rgb(0, 0, 0),
+    backgroundSecondary: rgb(44, 44, 44),
+    text: rgb(100, 100, 100),
+    textSecondary: rgb(0, 0, 0),
+    shade: rgb(25, 25, 25),
+    shadeDarker: rgb(50, 50, 50),
+    shadeColoredPrimary: $_color-primary-shade,
+    shadeColoredSecondary: $_color-primary-shade,
+    warning: $_color-warning,
+    error: $_color-error
+  )
+);
+
+@mixin themify($themes: $themes) {
+  @each $theme, $map in $themes {
+
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+
+      @content;
+      $theme-map: null !global;
+    }
+
+  }
 }
 
-
-$color-primary: rgb(71, 191, 247);
-$color-text-primary: rgb(0, 0, 0);
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}

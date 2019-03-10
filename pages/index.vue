@@ -1,32 +1,22 @@
 <template>
-  <section class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        oNote
-      </h1>
-      <h2 class="subtitle">
-        Note app with Google Drive integration
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >GitHub</a>
-      </div>
+  <section :class="'theme-' + theme" v-on:changeTheme="changeTheme($event)">
+    <section class="container" >
+      <div>
+        <logo />
+        <h1 class="title">
+          oNote
+        </h1>
+        <h2 class="subtitle">
+          Note app with Google Drive integration
+        </h2>
 
-      <Button class="test-class">TEST</Button>
-    </div>
+        <Button class="test-class" v-on:click="changeTheme()">Cycle themes</Button>
+      </div>
+    </section>
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import Logo from '~/components/Logo.vue'
 import Button from '~/components/Button.vue'
 
@@ -34,12 +24,34 @@ export default {
   components: {
     Logo,
     Button
+  },
+  data () {
+    return {
+      theme: 'light'
+    }
+  },
+  methods: {
+    changeTheme: function (): void {
+      if (this.theme === 'light') {
+        this.theme = 'dark';
+      }
+      else if (this.theme === 'dark') {
+        this.theme = 'black';
+      }
+      else if (this.theme === 'black') {
+        this.theme = 'light';
+      }
+      
+    }
   }
 }
 </script>
 
 <style lang="scss">
 .container {
+  @include themify($themes) {
+    background-color: themed('background');  
+  }
   margin: 0 auto;
   min-height: 100vh;
   display: flex;

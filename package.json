@@ -19,7 +19,8 @@
     "cross-env": "^5.2.0",
     "nuxt-ts": "^2.4.5",
     "nuxt-tslint": "^1.1.0",
-    "tslint": "^5.13.1"
+    "tslint": "^5.13.1",
+    "vue-property-decorator": "^8.0.0"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^0.1.2",

@@ -5,6 +5,15 @@
     "types": [
       "@types/node",
       "@nuxt/vue-app"
-    ]
-  }
+    ],
+    "experimentalDecorators": true
+  },
+  "files": [
+    "~/components/*",
+    "~/layouts/*",
+    "~/middleware/*",
+    "~/pages/*",
+    "~/plugins/*",
+    "~/store/*"
+  ]
 }
