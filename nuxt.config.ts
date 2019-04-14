@@ -1,11 +1,11 @@
-const pkg = require('./package')
+import pkg from './package.json';
 
-module.exports = {
+export default {
   mode: 'universal',
 
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     title: pkg.name,
     meta: [
@@ -17,42 +17,63 @@ module.exports = {
   },
 
   /*
-  ** Customize the progress-bar color
-  */
+   ** Customize the progress-bar color
+   */
   loading: { color: '#fff' },
 
   /*
-  ** Global CSS
-  */
-  css: [],
+   ** Global CSS
+   */
+  css: ['@/assets/scss/_app.scss'],
+
+  styleResources: {
+    scss: ['assets/scss/_app.scss']
+  },
 
   /*
-  ** Plugins to load before mounting the App
-  */
+   ** Plugins to load before mounting the App
+   */
   plugins: [],
 
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/style-resources',
-    'nuxt-tslint'
+    '@nuxtjs/style-resources'
   ],
-
-  styleResources: {
-    scss: [
-      './assets/scss/*.scss'
-    ]
+  /*
+   ** Axios module configuration
+   */
+  axios: {
+    // See https://github.com/nuxt-community/axios-module#options
   },
 
   /*
-  ** Axios module configuration
-  */
-  axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+   ** Build configuration
+   */
+  build: {
+    /*
+     ** You can extend webpack config here
+     */
+    extend(config, ctx) {
+      // Run ESLint on save
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|ts|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        });
+      }
+    },
+    babel: {
+      plugins: [
+        ['@babel/plugin-proposal-decorators', { legacy: true }],
+        ['@babel/plugin-proposal-class-properties', { loose: true }]
+      ]
+    }
   }
-
-}
+};

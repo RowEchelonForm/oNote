@@ -1,23 +1,22 @@
 <template>
-  <a :disabled="disabled ? true : false" class="btn" v-on:click="onClick" :href="href">
+  <a :disabled="disabled ? true : false" class="btn" @click="onClick">
     <slot></slot>
   </a>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator';
 
 @Component
 export default class Button extends Vue {
-  test = 0
+  test = 0;
 
   onClick(event): void {
     this.test += 1;
     this.$emit('click', event);
   }
 
-  @Prop(Boolean) disabled = false
-  @Prop(String) href = '#'
+  @Prop(Boolean) disabled = false;
 }
 </script>
 
@@ -38,7 +37,8 @@ export default class Button extends Vue {
   transition: background-color 100ms;
 }
 
-.btn::after, .btn::before {
+.btn::after,
+.btn::before {
   content: '';
   position: absolute;
   top: 0;
@@ -62,23 +62,25 @@ export default class Button extends Vue {
 
 .btn:hover {
   @include themify($themes) {
-    background-color: themed('primaryDarker');  
+    background-color: themed('primaryDarker');
   }
 }
 
 .btn:active {
   @include themify($themes) {
-    background-color: themed('primaryDarkest');  
+    background-color: themed('primaryDarkest');
   }
 }
 
 .btn:disabled {
   @include themify($themes) {
-    background-color: themed('primaryLighter');  
+    background-color: themed('primaryLighter');
   }
 }
 
-.btn:hover::after, .btn:active::before, .btn:focus::before {
+.btn:hover::after,
+.btn:active::before,
+.btn:focus::before {
   opacity: 1;
 }
 </style>

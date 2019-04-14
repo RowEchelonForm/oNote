@@ -1,6 +1,6 @@
-# oNote
+# onote
 
-> Note app with Google Drive integration
+> Cool note / checklist app
 
 ## Build Setup
 

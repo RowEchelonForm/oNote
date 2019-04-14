@@ -1,6 +1,6 @@
 <template>
-  <section :class="'theme-' + theme" v-on:changeTheme="changeTheme($event)">
-    <section class="container" >
+  <section :class="'theme-' + theme.value" @changeTheme="changeTheme($event)">
+    <section class="container">
       <div>
         <logo />
         <h1 class="title">
@@ -10,38 +10,43 @@
           Note app with Google Drive integration
         </h2>
 
-        <Button class="test-class" v-on:click="changeTheme()">Cycle themes</Button>
+        <Button class="test-class" @click="changeTheme()">Cycle themes</Button>
       </div>
     </section>
   </section>
 </template>
 
 <script lang="ts">
-import Logo from '~/components/Logo.vue'
-import Button from '~/components/Button.vue'
+import { Component, Emit, Mutation, State, Vue } from 'nuxt-property-decorator';
+import { mapMutations } from 'vuex';
+import { Theme } from '~/types';
+import Logo from '~/components/Logo.vue';
+import Button from '~/components/Button.vue';
 
-export default {
+@Component({
   components: {
-    Logo,
-    Button
-  },
-  data () {
-    return {
-      theme: 'light'
-    }
-  },
-  methods: {
-    changeTheme: function (): void {
-      if (this.theme === 'light') {
-        this.theme = 'dark';
-      }
-      else if (this.theme === 'dark') {
-        this.theme = 'black';
-      }
-      else if (this.theme === 'black') {
-        this.theme = 'light';
-      }
-      
+    Button,
+    Logo
+  }
+})
+export default class extends Vue {
+  // Why is there "!" character?
+  // See: http://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#definite-assignment-assertions
+  @State theme!: Theme;
+
+  @Mutation setTheme;
+
+  @Emit()
+  changeTheme() {
+    if (this.theme.value === 'light') {
+      this.setTheme({ value: 'dark' });
+      //this.theme.value = 'dark';
+    } else if (this.theme.value === 'dark') {
+      this.setTheme({ value: 'black' });
+      //this.theme.value = 'black';
+    } else if (this.theme.value === 'black') {
+      this.setTheme({ value: 'light' });
+      //this.theme.value = 'light';
     }
   }
 }
@@ -50,7 +55,7 @@ export default {
 <style lang="scss">
 .container {
   @include themify($themes) {
-    background-color: themed('background');  
+    background-color: themed('background');
   }
   margin: 0 auto;
   min-height: 100vh;
