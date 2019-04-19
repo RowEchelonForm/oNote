@@ -40,13 +40,10 @@ export default class extends Vue {
   changeTheme() {
     if (this.theme.value === 'light') {
       this.setTheme({ value: 'dark' });
-      //this.theme.value = 'dark';
     } else if (this.theme.value === 'dark') {
       this.setTheme({ value: 'black' });
-      //this.theme.value = 'black';
     } else if (this.theme.value === 'black') {
       this.setTheme({ value: 'light' });
-      //this.theme.value = 'light';
     }
   }
 }
@@ -63,6 +60,7 @@ export default class extends Vue {
   justify-content: center;
   align-items: center;
   text-align: center;
+  transition: background-color ease-in-out 100ms;
 }
 
 .title {
