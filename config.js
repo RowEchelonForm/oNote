@@ -1,31 +1,28 @@
 // These are the default config values:
-let config = {
+const config = {
   google: {
     googleAccountsUrl: '...',
     googleDocsUrl: '...',
-    googleDriveUrl: '...',
-  },
+    googleDriveUrl: '...'
+  }
 };
-
 
 const overrideConfig = getOverrideConfig();
 
 // Deep merge overrideConfig to config
-let merge = require('lodash.merge');
+const merge = require('lodash.merge');
 merge(config, overrideConfig);
-
 
 function getOverrideConfig() {
   let overrideConfig;
   try {
     // These are per user customized config values; config.override.js should be in .gitignore
-    overrideConfig = require('./config.override.js');
+    overrideConfig = require('./override.config');
   } catch (ex) {
     console.log('No override config found');
     overrideConfig = {};
   }
   return overrideConfig;
 }
-
 
 module.exports = config;

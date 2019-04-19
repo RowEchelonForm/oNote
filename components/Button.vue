@@ -1,6 +1,6 @@
 <template>
   <a :disabled="disabled ? true : false" class="btn" @click="onClick">
-    <slot></slot>
+    <slot />
   </a>
 </template>
 
@@ -9,14 +9,13 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator';
 
 @Component
 export default class Button extends Vue {
-  test = 0;
-
   onClick(event): void {
-    this.test += 1;
-    this.$emit('click', event);
+    if (!this.disabled) {
+      this.$emit('click', event);
+    }
   }
 
-  @Prop(Boolean) disabled = false;
+  @Prop(Boolean) disabled;
 }
 </script>
 
@@ -72,15 +71,22 @@ export default class Button extends Vue {
   }
 }
 
-.btn:disabled {
+.btn[disabled] {
   @include themify($themes) {
     background-color: themed('primaryLighter');
   }
+  cursor: default;
 }
 
 .btn:hover::after,
 .btn:active::before,
 .btn:focus::before {
   opacity: 1;
+}
+
+.btn[disabled]::after,
+.btn[disabled]:active::before,
+.btn[disabled]:focus::before {
+  opacity: 0;
 }
 </style>

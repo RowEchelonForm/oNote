@@ -10,7 +10,10 @@
           Note app with Google Drive integration
         </h2>
 
-        <Button class="test-class" @click="changeTheme()">Cycle themes</Button>
+        <Button class="test-class" data-test="asd" @click="changeTheme()">
+          Cycle themes
+        </Button>
+        <GoogleLoginButton />
       </div>
     </section>
   </section>
@@ -22,11 +25,13 @@ import { mapMutations } from 'vuex';
 import { Theme } from '~/types';
 import Logo from '~/components/Logo.vue';
 import Button from '~/components/Button.vue';
+import GoogleLoginButton from '~/components/GoogleLoginButton.vue';
 
 @Component({
   components: {
     Button,
-    Logo
+    Logo,
+    GoogleLoginButton
   }
 })
 export default class extends Vue {

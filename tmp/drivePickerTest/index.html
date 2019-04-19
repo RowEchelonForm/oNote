@@ -27,26 +27,36 @@
 
     // Use the Google API Loader script to load the google.picker script.
     function loadPicker() {
+      console.log('loadPicker called')
       gapi.load('auth', {'callback': onAuthApiLoad});
       gapi.load('picker', {'callback': onPickerApiLoad});
     }
 
     function onAuthApiLoad() {
-      window.gapi.auth.authorize(
-          {
-            'client_id': clientId,
-            'scope': scope,
-            'immediate': false
-          },
-          handleAuthResult);
+      console.log('onAuthApiLoad called')
+      document.getElementsByClassName('google-btn')[0].setAttribute('class', 'google-btn');
+      googleSignIn();
+    }
+
+    function googleSignIn() {
+      console.log('googleSignIn called')
+      var authObj = {
+        'client_id': clientId, 
+        'scope': scope, 
+        'immediate': false
+      };
+      window.gapi.auth.authorize(authObj, handleAuthResult);
     }
 
     function onPickerApiLoad() {
+      console.log('onPickerApiLoad called')
       pickerApiLoaded = true;
       createPicker();
     }
 
     function handleAuthResult(authResult) {
+      console.log('handleAuthResult called')
+      console.log(authResult)
       if (authResult && !authResult.error) {
         oauthToken = authResult.access_token;
         createPicker();
@@ -88,8 +98,14 @@
       }
     }
     </script>
+    <style>
+      .btn-disabled {
+        visibility: hidden;
+      }
+    </style>
   </head>
   <body>
+    <a href="" class="google-btn btn-disabled" onclick="googleSignIn()">Google sign-in</a>
     <div id="result"></div>
 
     <!-- The Google API Loader script. -->
