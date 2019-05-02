@@ -1,5 +1,2 @@
-export * from './state';
-
-export interface Theme {
-  value: string;
-}
+export * from './RootState';
+export * from './Theme';

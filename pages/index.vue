@@ -20,9 +20,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Emit, Mutation, State, Vue } from 'nuxt-property-decorator';
-import { mapMutations } from 'vuex';
-import { Theme } from '~/types';
+import { Component, Emit, Mutation, State, Vue, } from 'nuxt-property-decorator';
+import { mapMutations, } from 'vuex';
+import { Theme, } from '~/types';
 import Logo from '~/components/Logo.vue';
 import Button from '~/components/Button.vue';
 import GoogleLoginButton from '~/components/GoogleLoginButton.vue';
@@ -31,8 +31,8 @@ import GoogleLoginButton from '~/components/GoogleLoginButton.vue';
   components: {
     Button,
     Logo,
-    GoogleLoginButton
-  }
+    GoogleLoginButton,
+  },
 })
 export default class extends Vue {
   // Why is there "!" character?
@@ -44,11 +44,11 @@ export default class extends Vue {
   @Emit()
   changeTheme() {
     if (this.theme.value === 'light') {
-      this.setTheme({ value: 'dark' });
+      this.setTheme({ value: 'dark', });
     } else if (this.theme.value === 'dark') {
-      this.setTheme({ value: 'black' });
+      this.setTheme({ value: 'black', });
     } else if (this.theme.value === 'black') {
-      this.setTheme({ value: 'light' });
+      this.setTheme({ value: 'light', });
     }
   }
 }
@@ -69,8 +69,7 @@ export default class extends Vue {
 }
 
 .title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;

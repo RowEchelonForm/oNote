@@ -1,4 +1,4 @@
-import { Theme } from '~/types';
+import { Theme, } from './Theme';
 
 export interface RootState {
   theme: Theme;

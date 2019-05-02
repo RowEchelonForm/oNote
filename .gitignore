@@ -84,4 +84,4 @@ dist
 sw.*
 
 # Override config
-**/override.config.js
+**/config.override.*

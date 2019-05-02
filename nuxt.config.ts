@@ -9,25 +9,25 @@ export default {
   head: {
     title: pkg.name,
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { charset: 'utf-8', },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1', },
+      { hid: 'description', name: 'description', content: pkg.description, },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico', }, ],
   },
 
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#fff', },
 
   /*
    ** Global CSS
    */
-  css: ['@/assets/scss/_app.scss'],
+  css: ['@/assets/scss/_app.scss', ],
 
   styleResources: {
-    scss: ['assets/scss/_app.scss']
+    scss: ['assets/scss/_app.scss', ],
   },
 
   /*
@@ -42,7 +42,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
   ],
   /*
    ** Axios module configuration
@@ -65,15 +65,15 @@ export default {
           enforce: 'pre',
           test: /\.(js|ts|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          exclude: /(node_modules)/,
         });
       }
     },
     babel: {
       plugins: [
-        ['@babel/plugin-proposal-decorators', { legacy: true }],
-        ['@babel/plugin-proposal-class-properties', { loose: true }]
-      ]
-    }
-  }
+        ['@babel/plugin-proposal-decorators', { legacy: true, }, ],
+        ['@babel/plugin-proposal-class-properties', { loose: true, }, ],
+      ],
+    },
+  },
 };
