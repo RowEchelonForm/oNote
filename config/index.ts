@@ -3,11 +3,11 @@ import { AppConfig, } from './AppConfig';
 const config: AppConfig = {
   googleConfig: {
     googleAccountsUrl: 'https://apis.google.com/js/api.js?onload=googleJsLoaded',
-    googleDocsUrl: null,
-    googleDriveUrl: null,
+    googleDocsUrl: undefined,
+    googleDriveUrl: undefined,
     googleSecrets: {
-      clientId: null,
-    },
+      clientId: undefined
+    }
   },
 };
 const overrideConfig = getOverrideConfig();
@@ -15,6 +15,7 @@ const overrideConfig = getOverrideConfig();
 // Deep merge overrideConfig to config
 const merge = require('lodash.merge');
 merge(config, overrideConfig);
+
 
 function getOverrideConfig(): AppConfig {
   let overrideConfig;

@@ -20,12 +20,11 @@ declare global {
   components: { Button, },
 })
 export default class GoogleLoginButton extends Vue {
-  disabled = true;
-  oauthToken = null;
+  disabled: boolean = true;
+  oauthToken: string | undefined;
 
   onClick(event): void {
     console.log('google login click');
-    console.log(window.gapi);
     const authObj = {
       client_id: config.googleConfig.googleSecrets.clientId,
       scope: ['https://www.googleapis.com/auth/drive', ],
@@ -41,7 +40,7 @@ export default class GoogleLoginButton extends Vue {
   }
 
   authJsLoaded(): void {
-    console.log('auth js loaded');
+    console.log('google auth js loaded');
     this.disabled = false;
   }
 
@@ -55,14 +54,19 @@ export default class GoogleLoginButton extends Vue {
   }
 
   mounted(): void {
-    console.log('GoogleLoginButton mounted');
+    if (config.googleConfig.googleAccountsUrl === undefined) {
+      console.error('config.googleConfig.googleAccountsUrl is not defined');
+      return;
+    }
+
     const loginScript = document.createElement('script');
-    loginScript.setAttribute('src', 'https://apis.google.com/js/api.js?onload=googleJsLoaded');
+    loginScript.setAttribute('src', config.googleConfig.googleAccountsUrl);
     loginScript.setAttribute('async', 'true');
     loginScript.setAttribute('defer', 'defer');
     document.head.appendChild(loginScript);
     window.gapi = window.gapi || {};
     window.googleJsLoaded = this.googleJsLoaded;
+    console.log('GoogleLoginButton mounted');
   }
 }
 </script>

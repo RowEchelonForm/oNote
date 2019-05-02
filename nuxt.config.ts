@@ -59,7 +59,9 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {
-      // Run ESLint on save
+      
+      // Run ESLint on save  -- how about no?
+      /*
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -68,6 +70,8 @@ export default {
           exclude: /(node_modules)/,
         });
       }
+      */
+
     },
     babel: {
       plugins: [

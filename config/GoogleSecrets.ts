@@ -1,3 +1,3 @@
 export class GoogleSecrets {
-  public clientId: string | null = null;
+  public clientId: string | undefined;
 }
