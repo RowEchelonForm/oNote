@@ -14,7 +14,7 @@ import { Component, Vue, } from 'nuxt-property-decorator';
 export default class Logo extends Vue {}
 </script>
 
-<style>
+<style lang="scss">
 .VueToNuxtLogo {
   display: inline-block;
   animation: turn 2s linear forwards 1s;
@@ -63,7 +63,10 @@ export default class Logo extends Vue {}
   animation: godown 0.5s linear forwards 3s;
   border-left: 35px solid transparent;
   border-right: 35px solid transparent;
-  border-bottom: 60px solid #fff;
+
+  @include themify($themes) {
+    border-bottom: 60px solid themed('background');
+  }
 }
 
 @keyframes turn {

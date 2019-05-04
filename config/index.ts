@@ -3,7 +3,7 @@ import { AppConfig, } from './AppConfig';
 function getConfig(): AppConfig {
   return {
     googleConfig: {
-      googleAccountsUrl: 'https://apis.google.com/js/api.js?onload=googleJsLoaded',
+      googleAccountsUrl: 'https://apis.google.com/js/api.js',
       googleDocsUrl: undefined,
       googleDriveUrl: undefined,
       googleSecrets: {

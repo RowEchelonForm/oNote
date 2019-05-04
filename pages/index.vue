@@ -13,11 +13,13 @@
         <Button class="test-class" data-test="asd" @click="changeTheme()">
           Cycle themes
         </Button>
-        <GoogleLoginButton />
+        <AuthLayer />
+        <router-link to="/pickgooglefolders">Go to Google folders</router-link>
       </div>
     </section>
   </section>
 </template>
+
 
 <script lang="ts">
 import { Component, Emit, Mutation, State, Vue, } from 'nuxt-property-decorator';
@@ -25,13 +27,13 @@ import { mapMutations, } from 'vuex';
 import { Theme, } from '~/types';
 import Logo from '~/components/Logo.vue';
 import Button from '~/components/Button.vue';
-import GoogleLoginButton from '~/components/GoogleLoginButton.vue';
+import AuthLayer from '~/components/AuthLayer.vue';
 
 @Component({
   components: {
     Button,
     Logo,
-    GoogleLoginButton,
+    AuthLayer,
   },
 })
 export default class extends Vue {
@@ -41,8 +43,7 @@ export default class extends Vue {
 
   @Mutation setTheme;
 
-  @Emit()
-  changeTheme() {
+  changeTheme(): void {
     if (this.theme.value === 'light') {
       this.setTheme({ value: 'dark', });
     } else if (this.theme.value === 'dark') {
@@ -53,6 +54,7 @@ export default class extends Vue {
   }
 }
 </script>
+
 
 <style lang="scss">
 .container {

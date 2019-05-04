@@ -4,20 +4,23 @@
   </a>
 </template>
 
+
 <script lang="ts">
 import { Component, Prop, Vue, } from 'nuxt-property-decorator';
 
 @Component
 export default class Button extends Vue {
+  @Prop({ default: false })
+  disabled!: boolean;
+
   onClick(event): void {
     if (!this.disabled) {
       this.$emit('click', event);
     }
   }
-
-  @Prop(Boolean) disabled;
 }
 </script>
+
 
 <style lang="scss">
 .btn {
