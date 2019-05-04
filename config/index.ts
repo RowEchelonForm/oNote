@@ -6,8 +6,10 @@ const config: AppConfig = {
     googleDocsUrl: undefined,
     googleDriveUrl: undefined,
     googleSecrets: {
-      clientId: undefined
-    }
+      appId: undefined,
+      clientId: undefined,
+      googleDeveloperKey: undefined,
+    },
   },
 };
 const overrideConfig = getOverrideConfig();
