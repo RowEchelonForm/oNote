@@ -1,5 +1,5 @@
-export class GoogleSecrets {
-  public appId: string | undefined;
-  public clientId: string | undefined;
-  public googleDeveloperKey: string | undefined;
+export interface GoogleSecrets {
+  appId: string | undefined;
+  clientId: string | undefined;
+  googleDeveloperKey: string | undefined;
 }
