@@ -1,4 +1,5 @@
 import pkg from './package.json';
+import config from './config';
 
 export default {
   mode: 'universal',
@@ -43,12 +44,27 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
+    '@nuxtjs/auth',
   ],
   /*
    ** Axios module configuration
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+  },
+
+  auth: {
+    redirect: {
+      login: '/test',
+      logout: '/',
+      callback: '/loggedin',
+      home: '/'
+    },
+    strategies: {
+      google: {
+        client_id: config.googleConfig.googleSecrets.clientId
+      },
+    }
   },
 
   /*

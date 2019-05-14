@@ -28,6 +28,9 @@
     "types": [
       "@types/node",
       "@nuxt/vue-app"
+    ],
+    "typeRoots": [
+      "./types"
     ]
   }
 }

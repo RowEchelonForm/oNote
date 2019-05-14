@@ -17,7 +17,9 @@ declare global {
   }
 }
 
-@Component({ components: { Button, }, })
+@Component({ 
+  components: { Button, }, 
+  })
 export default class GoogleLoginButton extends Vue {
   disabled: boolean = true;
 

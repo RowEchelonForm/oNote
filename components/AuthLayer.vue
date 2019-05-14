@@ -1,6 +1,7 @@
 <template>
   <div v-if="this.authInfo.type === getAuthInfoTypeEnum().None" class="auth-layer">
     <GoogleLoginButton @authSuccess="this.handleAuthSuccess" @authError="handleAuthError" />
+    <GoogleLoginButton2 />
   </div>
 </template>
 
@@ -9,8 +10,14 @@
 import { Component, Prop, Vue, } from 'nuxt-property-decorator';
 import { AuthInfo, AuthType } from '~/types';
 import GoogleLoginButton from './GoogleLoginButton.vue';
+import GoogleLoginButton2 from './GoogleLoginButton2.vue';
 
-@Component({ components: { GoogleLoginButton, }, })
+@Component({ 
+  components: { 
+    GoogleLoginButton, 
+    GoogleLoginButton2 
+  }, 
+})
 export default class AuthLayer extends Vue {
   @Prop({ default: function(): AuthInfo { return { type: AuthType.None, authObject: undefined } } })
   authInfo!: AuthInfo;
